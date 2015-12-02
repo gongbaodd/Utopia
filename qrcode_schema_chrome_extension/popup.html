@@ -5,6 +5,78 @@
     <title>QunarQRCode</title>
 </head>
 <body>
-    <div>Hello World 111</div>
+    <form action="" id="form">
+        <table width=100%>
+            <caption>Schema生成工具</caption>
+            <tr>
+                <td>protocol</td>
+                <td>
+                    <label>
+                        <input type="radio" name="protocol" value="qunaraphone" checked>android
+                    </label>
+                </td>
+                <td>
+                    <label>
+                        <input type="radio" name="protocol" value="qunariphone">ios
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td colspan="2"><input type="text" name="view"></td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td ><input type="radio" name="nav" value="navibar-normal" checked>normal</td>
+                <td ><input type="radio" name="nav" value="navibar-none">none</td>
+            </tr>
+            <tr>
+                <td colspan=3 bgcolor=#eee><input type="checkbox" name="navigation">navigation</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="left">left
+                </td>
+                <td>
+                    <input type="text" name="lstyle" value="icon">
+                </td>
+                <td>
+                    <input type="text" name="ltext" value="\uf067">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="title">title
+                </td>
+                <td>
+                    <input type="text" name="tstyle" value="text">
+                </td>
+                <td>
+                    <input type="text" name="ttext">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="right">right
+                </td>
+                <td>
+                    <input type="text" name="rstyle" value="text">
+                </td>
+                <td>
+                    <input type="text" name="rtext" value="右边">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"><input type="submit" name="type" value="提交"></td>
+            </tr>
+        </table>
+    </form>
+    <div>
+        <img id="canvas" src="http://qr.liantu.com/api.php?text=">
+    </div>
+    <div>
+        <span style="width:100%;word-wrap:break-word;" id="tips"></span>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
