@@ -2,6 +2,9 @@ function getDomainFromUrl(url) {
     var a = document.createElement('a');
     a.href = url;
     var o = a.origin;
+    setTimeout(function() {
+        a.remove();
+    },1000);
     return o.replace(a.protocol+'//','');
 };
 
