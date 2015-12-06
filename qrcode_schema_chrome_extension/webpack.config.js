@@ -1,37 +1,33 @@
-var webpack = require('webpack');
-var path = require('path');
+var path = require("path");
+// For conveniance we create variable that holds the directory to bower_components
+var bower_dir = __dirname + '/bower_components';
 
 module.exports = {
     entry: "./app/src/js/entry.js",
+    // The resolve.alias object takes require expressions
+    // (require('react')) as keys and filepath to actual
+    // module as values
+    resolve: {
+        alias: {
+            'react': bower_dir + '/react/react.min.js'
+        }
+    },
     output: {
-        path: path.join(__dirname,"app/scripts"),
+        path: path.join(__dirname, "app/scripts"),
         filename: "main.js"
     },
-    plugins: [
-        new webpack.ProvidePlugin({
-            riot: 'riot'
-        })
-    ],
     module: {
-        preLoaders: [
+        // There is no reason for WebPack to parse this file
+        noParse: [bower_dir + '/react/react.min.js'],
+        loaders: [{
+                test: /\.css$/,
+                loader: "style!css"
+            },
+            // required for react jsx
             {
-                test: /\.tag$/,
-                exclude: /node_modules/,
-                loader: 'riotjs-loader',
-                query: {
-                    type: 'none'
-                }
-            }
-        ],
-        loaders: [
-            {
-                test: /\.scss$/,
-                loaders: ["style","css","scss"]
-            },{
-                test: /\.js|\.tag|\.es6$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader'
+                test: /\.js$/,
+                loader: "jsx-loader"
             }
         ]
     }
-}
+};
