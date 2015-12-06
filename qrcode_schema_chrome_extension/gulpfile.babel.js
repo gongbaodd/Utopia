@@ -4,9 +4,16 @@ import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import del from 'del';
 import {stream as wiredep} from 'wiredep';
+import gutil from 'gulp-util';
+import webpack from 'webpack';
+import webpackConfig from './webpack.config.js';
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
+
+gulp.task('webpack', () => {
+
+});
 
 gulp.task('styles', () => {
   return gulp.src('app/styles/*.scss')
