@@ -11,8 +11,14 @@ import webpackConfig from './webpack.config.js';
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
-gulp.task('webpack', () => {
-
+gulp.task('webpack', (callback) => {
+    var myConfig = Object.create(webpackConfig);
+    webpack(
+        myConfig,
+        (err , stats) => {
+            callback();
+        }
+    );
 });
 
 gulp.task('styles', () => {
@@ -113,7 +119,7 @@ gulp.task('serve', ['styles', 'fonts'], () => {
     'app/scripts/**/*.js',
     'app/images/**/*',
     '.tmp/fonts/**/*'
-  ]).on('change', reload);
+    ],['webpack']).on('change', reload);
 
   gulp.watch('app/styles/**/*.scss', ['styles']);
   gulp.watch('app/fonts/**/*', ['fonts']);
