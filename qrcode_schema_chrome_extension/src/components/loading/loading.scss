@@ -1,0 +1,33 @@
+.yo-loading-camel{
+    background-color: transparent;
+    .yo-loading{
+        background-color: transparent;
+
+        & > .inner{
+            padding:0;
+            position: relative;
+            width: 2rem;
+            height: 1.2rem;
+            top: -1.2rem;
+            & > .yo-ico {
+                position: absolute;
+                top:.2rem;
+                width: 100%;
+            }
+            & > .svg {
+                position: absolute;
+                width: 100%;
+                svg{
+                    margin: 0 auto;
+                    display: block;
+                    height: .75rem;
+                    width: 1.5rem;
+                    border-radius: .1rem;
+                }
+            }
+            & > .yo-ico::before{
+                color: #1ba9ba;
+            }
+        }
+    }
+}

@@ -54,7 +54,7 @@
 /******/ 	
 /******/ 	
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "e8cc31387a3b474ce4dc"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "d0061320857cf6347a36"; // eslint-disable-line no-unused-vars
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentParents = []; // eslint-disable-line no-unused-vars
 /******/ 	
@@ -562,11 +562,11 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	chrome.tabs.getSelected(null, function () {
-	    document.body.innerHTML += '<app></app>';
+	// chrome.tabs.getSelected(null,()=>{
+	document.body.innerHTML += '<app></app>';
 	
-	    _riot2.default.mount('app');
-	});
+	window.__APP__ = _riot2.default.mount('app');
+	// });undefined
 
 /***/ },
 /* 1 */
@@ -2831,7 +2831,7 @@
 	
 	__webpack_require__(9);
 	
-	riot.tag2('app', '<qapp title="webVC" style="top:0;transform:scale(.9);"></qapp> <qapp title="hy-normal" style="top:20%;transform:scale(.93);"></qapp> <qapp title="hy-transparent" style="top:40%;transform:scale(.96);"></qapp> <qapp title="hy-none" style="top:60%;transform:scale(1);"></qapp>', ':scope{ width: 3.2rem; height: 5.78rem; }', '', function (opts) {});
+	riot.tag2('app', '<qapp title="webVC" style="transform:scale(.9) translateY(0);transition: all .5s;"></qapp> <qapp title="hy-normal" style="transform:scale(.93) translateY(15%);transition: all .5s;"></qapp> <qapp title="hy-transparent" style="transform:scale(.96) translateY(40%);transition: all .5s;"></qapp> <qapp title="hy-none" style="transform:scale(1) translateY(70%);transition: all .5s;"></qapp>', ':scope{ width: 3.2rem; height: 4.8rem; }', '', function (opts) {});
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -2842,9 +2842,15 @@
 	
 	__webpack_require__(4);
 	
-	riot.tag2('qapp', '<yo-header></yo-header>', ':scope{ overflow: hidden; position: relative; }', '', function (opts) {
+	__webpack_require__(1);
+	
+	riot.tag2('qapp', '<yo-header></yo-header>', ':scope{ overflow: hidden; position: relative; }', 'onclick="{chosen}"', function (opts) {
 	        this.title = opts.title;
-	});
+	        this.chosen = function () {
+	                riot.route(this.title);
+	        };
+	        this.on('mount', function () {});
+	}, '{ }');
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ },
@@ -2855,7 +2861,7 @@
 	
 	__webpack_require__(5);
 	
-	riot.tag2('yo-header', '<h2 class="title">{title}</h2> <span class="regret yo-ico">{left}</span> <span class="affirm yo-ico"></span>', 'yo-header,[riot-tag="yo-header"] { display: block; border-top-left-radius: 3px; border-top-right-radius: 3px; } yo-header .title,[riot-tag="yo-header"] .title{ font-weight: normal; } yo-header.hy-transparent,[riot-tag="yo-header"].hy-transparent{ border-color: transparent; background-color: transparent; color: #212121; } yo-header.hy-transparent > .regret::before,[riot-tag="yo-header"].hy-transparent > .regret::before { content: \'\'; width: .35rem; height: .35rem; position: absolute; border: 2px solid #7cd; background-color: rgba(27,169,186,.4); border-radius: 50%; top: .04rem; left: .1rem; } yo-header.hy-none,[riot-tag="yo-header"].hy-none{ border-color: transparent; background-color: transparent; color: #212121; } yo-header.hy-none > .regret,[riot-tag="yo-header"].hy-none > .regret { display: none; } yo-header.hy-none > .affirm,[riot-tag="yo-header"].hy-none > .affirm { display: none; }', 'class="yo-header {title}"', function (opts) {
+	riot.tag2('yo-header', '<h2 class="title">{title}</h2> <span class="regret yo-ico">{left}</span> <span class="affirm yo-ico"></span>', 'yo-header,[riot-tag="yo-header"] { display: block; border-top-left-radius: 3px; border-top-right-radius: 3px; } yo-header .title,[riot-tag="yo-header"] .title{ font-weight: normal; } yo-header.hy-transparent,[riot-tag="yo-header"].hy-transparent{ border-color: transparent; background-color: transparent; color: #212121; } yo-header.hy-transparent > .regret::before,[riot-tag="yo-header"].hy-transparent > .regret::before { content: \'\'; width: .25rem; height: .25rem; position: absolute; border: 1px solid #7cd; background-color: rgba(27,169,186,.4); border-radius: 50%; top: .09rem; left: .13rem; } yo-header.hy-none,[riot-tag="yo-header"].hy-none{ border-color: transparent; background-color: transparent; color: #212121; } yo-header.hy-none > .regret,[riot-tag="yo-header"].hy-none > .regret { display: none; } yo-header.hy-none > .affirm,[riot-tag="yo-header"].hy-none > .affirm { display: none; }', 'class="yo-header {title}"', function (opts) {
 	        var title = this.parent.title;
 	        var left = '';
 	        if (title == 'webVC') {
@@ -3269,7 +3275,24 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	_riot2.default.route.start(true);
-	_riot2.default.route(function () {});
+	_riot2.default.route(function (tag) {
+	    // var currTag = document.querySelector('qapp[title='+tag+']');
+	    // var appTag = Array.from(document.querySelectorAll('qapp')).filter((t)=>{return t!==currTag;});
+	    //
+	    // currTag.style.cssText += `transform: translateY(5%) scale(1)`;
+	    // appTag.forEach(function(t) {
+	    //     t.style.opacity = 0;
+	    // });
+	    var app = window.__APP__;
+	    var currTag = app.tags.qapp.filter(function (t) {
+	        return t.title === tag;
+	    });
+	    var appTag = app.tags.qapp.filter(function (t) {
+	        return t.title !== tag;
+	    });
+	
+	    console.log(appTag);
+	});
 
 /***/ },
 /* 12 */

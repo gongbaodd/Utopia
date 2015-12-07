@@ -1,12 +1,13 @@
 import riot from 'riot';
 
 riot.route.start(true);
-riot.route((tag)=>{
-    var currTag = document.querySelector('qapp[title='+tag+']');
-    var appTag = Array.from(document.querySelectorAll('qapp')).filter((t)=>{return t!==currTag;});
 
-    currTag.style.cssText += `transform: translateY(5%) scale(1)`;
-    appTag.forEach(function(t) {
-        t.style.opacity = 0;
-    });
+riot.route((tag)=>{
+    var app = window.__APP__;
+
+    var currTag = app.tags['qapp'].filter((t)=>t.title===tag);
+    var appTag = app.tags['qapp'].filter((t)=>t.title!==tag);
+
+    currTag.forEach((t)=>t.trigger('show'));
+    appTag.forEach((t)=>t.trigger('hide'));
 });
