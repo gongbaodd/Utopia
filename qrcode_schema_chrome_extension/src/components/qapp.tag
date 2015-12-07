@@ -1,13 +1,17 @@
 import './header/header.tag';
-<qapp>
+import 'riot';
+<qapp onclick={chosen}>
     <yo-header></yo-header>
     <script>
         this.title = opts.title;
+        this.chosen = function() {
+            riot.route(this.title);
+        };
     </script>
     <style>
     :scope{
         overflow: hidden;
-        transform-origin: top center;
+        position: relative;
     }
     </style>
 </qapp>

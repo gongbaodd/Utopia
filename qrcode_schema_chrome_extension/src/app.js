@@ -1,9 +1,11 @@
 import riot from 'riot';
 import './app.tag';
 
-document.body.innerHTML += '<app></app>';
+// chrome.tabs.getSelected(null,()=>{
+    document.body.innerHTML += '<app></app>';
 
-riot.mount('app');
+    riot.mount('app');
+// });
 
 import './router.js';
 import './style/global.scss';

@@ -40,7 +40,8 @@ module.exports = {
     },
     resolve: {
         alias: {
-            yo: __dirname + '/bower_components/Yo'
+            yo: __dirname + '/bower_components/Yo',
+            zepto: __dirname + '/bower_components/zepto/zepto.js'
         }
     },
     devtool: "source-map",

@@ -4,7 +4,7 @@ function getDomainFromUrl(url) {
     var o = a.origin;
     setTimeout(function() {
         a.remove();
-    },1000);
+    },100);
     return o.replace(a.protocol+'//','');
 };
 
