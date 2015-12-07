@@ -8,12 +8,18 @@
   "author": "gongbaodd",
   "license": "ISC",
   "devDependencies": {
+    "babel": "^6.3.13",
     "babel-core": "^6.3.13",
     "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
     "bundle-loader": "^0.5.4",
     "css-loader": "^0.23.0",
     "file-loader": "^0.8.5",
+    "html-webpack-plugin": "^1.7.0",
+    "node-sass-china": "^3.4.2",
+    "riot": "^2.3.11",
     "riot-loader": "^1.0.0",
+    "riotjs-loader": "^1.2.0",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
@@ -22,7 +28,11 @@
   },
   "description": "",
   "dependencies": {
+    "css-loader": "^0.23.0",
     "riot": "^2.3.11",
-    "riot-mui": "0.0.4"
+    "riot-mui": "0.0.4",
+    "riot-router": "^0.7.2",
+    "sass-loader": "^3.1.2",
+    "scss-loader": "0.0.1"
   }
 }
