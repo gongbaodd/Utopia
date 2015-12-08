@@ -1,20 +1,31 @@
 import './header/header.tag';
 import './loading/loading.tag';
+import './qrcode/qrcode.tag';
 import 'riot';
 import { webvc,normal,transparent,none } from './webview.js';
 
 <qapp onclick={chosen}>
     <yo-header></yo-header>
-    <camel-loading></camel-loading>
-    <qrcode></qrcode>
+    <camel-loading if="{!qrcode}"></camel-loading>
+    <qrcode if="{qrcode}" img="{qrcode}"></qrcode>
+
     <script>
         var root = this.root;
+        var self = this;
 
         this.title = opts.title;
+        this.qrcode = opts.qrcode;
         this.chosen = function() {
             riot.route(this.title);
         };
-        this.on('hide',()=>root.style.opacity=0);
+
+        this.on('hide',()=>{
+            root.style.opacity=0;
+
+            setTimeout(function() {
+                self.unmount();
+            },1500);
+        });
         this.on('show',()=>{
             root.style.cssText += 'transform: scale(1) translateY(5%);';
             switch (this.title) {
@@ -35,7 +46,7 @@ import { webvc,normal,transparent,none } from './webview.js';
         });
 
     </script>
-    <style>
+    <style scoped>
     :scope{
         overflow: hidden;
         position: relative;
