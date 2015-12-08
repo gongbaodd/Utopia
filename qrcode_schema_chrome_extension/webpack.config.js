@@ -41,7 +41,8 @@ module.exports = {
     resolve: {
         alias: {
             yo: __dirname + '/bower_components/Yo',
-            zepto: __dirname + '/bower_components/zepto/zepto.js'
+            zepto: __dirname + '/bower_components/zepto/zepto.js',
+            qrcode: __dirname + '/bower_components/qrcode/dist/arale-qrcode/3.0.5/index.js',
         }
     },
     devtool: "source-map",

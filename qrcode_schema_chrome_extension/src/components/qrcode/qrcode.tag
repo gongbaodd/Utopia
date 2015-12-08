@@ -1,24 +1,19 @@
 <qrcode>
 
-    <div>
-        <canvas width=300 height=300></canvas>
+    <div class="canvas">
     </div>
-    <p>{typeof qrcode == 'string'?qrcode : qrcode.src}</p>
 
     <script>
-        this.on('mount',()=>{
+        this.on('mount update',()=>{
             var qrcode = this.qrcode;
             var root = this.root;
-            if (typeof qrcode === 'string') {
-                console.log(qrcode)
-            } else {
-                generateIMG();
-            }
+
+            qrcode && generateIMG();
 
             function generateIMG() {
-                var canvas = root.querySelector('canvas');
-                var context = canvas.getContext("2d");
-                context.drawImage(qrcode,0,0);
+                var canvas = root.querySelector('.canvas');
+                canvas.innerHTML = '';
+                canvas.appendChild(qrcode);
             };
         });
 
@@ -26,9 +21,9 @@
     </script>
     <style scoped>
         :scope > div{
-            padding: .1rem;
             width: 3.2rem;
             height: 3.2rem;
+            padding: .1rem;
             display: block;
             overflow: hidden;
             margin: .1rem auto;

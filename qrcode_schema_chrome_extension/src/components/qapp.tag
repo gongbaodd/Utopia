@@ -6,19 +6,20 @@ import 'riot';
 import { webvc,normal,transparent,none } from './webview.js';
 import 'yo/lib/fragment/yo-list.scss';
 
-<qapp onclick={chosen}>
+<qapp>
     <yo-header></yo-header>
-    <camel-loading if="{!qrcode}"></camel-loading>
-    <qrcode if="{qrcode}" img="{qrcode}"></qrcode>
-    <yo-list class="yo-list" ></yo-list>
+    <camel-loading if="{!show}" onclick={chosen}></camel-loading>
+    <qrcode if="{show}" img="{qrcode}"></qrcode>
+    <yo-list if="{show}" class="yo-list" ></yo-list>
     <script>
         var root = this.root;
         var self = this;
 
         this.title = opts.title;
-        this.qrcode = opts.qrcode;
+        this.extra = null;
         this.chosen = function() {
             riot.route(this.title);
+            return true;
         };
 
         this.on('hide',()=>{
@@ -26,10 +27,21 @@ import 'yo/lib/fragment/yo-list.scss';
 
             setTimeout(function() {
                 self.unmount();
-            },1500);
+            },1000);
         });
         this.on('show',()=>{
             root.style.cssText += 'transform: scale(1) translateY(5%);';
+
+            this.update({show: true});
+
+            this.webview();
+        });
+
+        this.on('toggle',(e)=>{
+            this.webview();
+        });
+
+        this.webview = function() {
             switch (this.title) {
                 case 'webVC':
                     webvc(this);
@@ -45,7 +57,7 @@ import 'yo/lib/fragment/yo-list.scss';
                     break;
                 default:
             }
-        });
+        };
 
     </script>
     <style scoped>

@@ -1,35 +1,68 @@
 const PAGE_URL = window.location.href;
 const QR_CODE = "http://qr.liantu.com/api.php?text=";
 
-export function webvc(self) {
-    var src = QR_CODE + encodeURIComponent(PAGE_URL);
-    genrtateQR(self,src);
+import QRCode from 'qrcode';
+
+export function webvc(self,extra) {
+    var root = self.root;
+    var href = PAGE_URL;
+    var host = '://web/url?url=';
+    var protocol = chooseOS(root);
+    var schema = [protocol,host,encodeURIComponent(href)].join('');
+    genrtateQR(self,schema);
+
+    self.schema = schema;
 };
 
-export function transparent(self) {
-    var src = QR_CODE + encodeURIComponent(PAGE_URL);
-    genrtateQR(self,src);
+export function transparent(self,extra) {
+    var root = self.root;
+    var href = PAGE_URL;
+    var host = '://hy/url?type=navibar-transparent&url=';
+    var protocol = chooseOS(root);
+    var schema = [protocol,host,encodeURIComponent(href)].join('');
+    genrtateQR(self,schema);
+
+    self.schema = schema;
 };
 
-export function none(self) {
-    var src = QR_CODE + encodeURIComponent(PAGE_URL);
-    genrtateQR(self,src);
+export function none(self,extra) {
+    var root = self.root;
+    var href = PAGE_URL;
+    var host = '://hy/url?type=navibar-none&url=';
+    var protocol = chooseOS(root);
+    var schema = [protocol,host,encodeURIComponent(href)].join('');
+    genrtateQR(self,schema);
+
+    self.schema = schema;
 };
 
-export function normal(self) {
-    var src = QR_CODE + encodeURIComponent(PAGE_URL);
-    genrtateQR(self,src);
+export function normal(self,extra) {
+    var root = self.root;
+    var href = PAGE_URL;
+    var host = '://hy/url?url=';
+    var protocol = chooseOS(root);
+    var schema = [protocol,host,encodeURIComponent(href)].join('');
+    genrtateQR(self,schema);
+
+    self.schema = schema;
 };
 
-function genrtateQR(self,src){
-    var img = new Image();
+function chooseOS(root) {
+    var os = Array.from(root.querySelectorAll('input[name=os]'))
+                  .filter((e)=>e.checked);
 
-    var src = "http://localhost:8080/api.png";
-    img.src = src;
-    img.onload = function() {
-        self.update({qrcode:img});
-    };
-    img.onerror = function() {
-        self.update({qrcode:src})
-    };
+    return os[0].value;
+};
+
+function genrtateQR(self,schema){
+    var qrcode = self.tags['qrcode'];
+    var root = self.root;
+    var input = root.querySelector('input[name=url]');
+
+    input.value = schema;
+
+    var src = QR_CODE + encodeURIComponent(schema);
+    var img = new QRCode({text: schema,size: 300});
+
+    qrcode.update({qrcode: img});
 }
