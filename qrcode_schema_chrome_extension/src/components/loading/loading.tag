@@ -120,5 +120,9 @@ import './loading.scss';
         <p>加载中...</p>
     </span>
 </div>
-
+<style scoped>
+    :scope{
+        display: block;
+    }
+</style>
 </camel-loading>

@@ -1,14 +1,16 @@
 import './header/header.tag';
 import './loading/loading.tag';
 import './qrcode/qrcode.tag';
+import './list/list.tag';
 import 'riot';
 import { webvc,normal,transparent,none } from './webview.js';
+import 'yo/lib/fragment/yo-list.scss';
 
 <qapp onclick={chosen}>
     <yo-header></yo-header>
     <camel-loading if="{!qrcode}"></camel-loading>
     <qrcode if="{qrcode}" img="{qrcode}"></qrcode>
-
+    <yo-list class="yo-list" ></yo-list>
     <script>
         var root = this.root;
         var self = this;

@@ -4,7 +4,7 @@
         <canvas width=300 height=300></canvas>
     </div>
     <p>{typeof qrcode == 'string'?qrcode : qrcode.src}</p>
-    
+
     <script>
         this.on('mount',()=>{
             var qrcode = this.qrcode;
