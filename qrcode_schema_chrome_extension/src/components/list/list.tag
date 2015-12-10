@@ -32,7 +32,7 @@ import $ from 'zepto';
             </label>
         </div>
     </item>
-    <item class="item">
+    <!-- <item class="item">
         <div class="mark flex">
             压缩地址
         </div>
@@ -44,7 +44,7 @@ import $ from 'zepto';
                 </div>
             </label>
         </div>
-    </item>
+    </item> -->
     <script>
         const COM_URL = 'http://985.so/api.php?format=jsonp&callback=callback&url=';
 
