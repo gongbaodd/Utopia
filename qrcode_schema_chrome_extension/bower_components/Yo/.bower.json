@@ -1,0 +1,15 @@
+{
+  "name": "Yo",
+  "homepage": "https://github.com/doyoe/Yo",
+  "version": "1.8.7",
+  "_release": "1.8.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.8.7",
+    "commit": "e326353517f857e01b2badf5908c5fe3a0c77b8a"
+  },
+  "_source": "https://github.com/doyoe/Yo.git",
+  "_target": "~1.8.7",
+  "_originalSource": "https://github.com/doyoe/Yo.git",
+  "_direct": true
+}

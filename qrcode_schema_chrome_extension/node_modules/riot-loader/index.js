@@ -1,0 +1,47 @@
+'use strict';
+
+var extend = require('extend-object');
+var loaderUtils = require('loader-utils');
+var os = require('os');
+var riot = require('riot/compiler');
+var defaults = {};
+
+module.exports = function(source) {
+
+  var filename = loaderUtils.getRemainingRequest(this);
+  var content = source;
+  var map;
+  var options = {};
+  var result;
+
+  this.cacheable && this.cacheable();
+
+  // Process query and setup options/defaults/forced
+  // extend(options, defaults, loaderUtils.parseQuery(this.query));
+  Object.keys(options).forEach(function(key) {
+    switch(options[key]) {
+      case 'true':
+        options[key] = true;
+        break;
+      case 'false':
+        options[key] = false;
+        break;
+      case 'undefined':
+        options[key] = undefined;
+        break;
+      case 'null':
+        options[key] = null;
+        break;
+    }
+  });
+
+  // Parse code through Riot.js
+  try {
+    result = riot(content, options);
+    return result;
+  }
+  catch(errors) {
+    throw new Error(errors.join(os.EOL));
+  };
+
+}

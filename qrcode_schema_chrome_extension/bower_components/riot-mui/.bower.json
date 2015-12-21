@@ -1,0 +1,37 @@
+{
+  "name": "riot-mui",
+  "description": "Set of material ui components for riot js.",
+  "main": "build/bundle.js",
+  "authors": [
+    "Anton Miroshnichenko"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "riot",
+    "mui",
+    "material",
+    "interface"
+  ],
+  "homepage": "https://github.com/kysonic/riot-mui",
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "_release": "8fb07c7905",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "8fb07c79051895410040abffa49a7eb4ce459ed4"
+  },
+  "_source": "git://github.com/kysonic/riot-mui.git",
+  "_target": "*",
+  "_originalSource": "riot-mui",
+  "_direct": true
+}
