@@ -1,3 +1,5 @@
-document.body.innerHTML += '<app></app>';
+import router from './router/index.js';
+import {initApp} from './mojo/initApp.js';
 
-import router from './router';
+
+initApp();
