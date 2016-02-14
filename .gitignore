@@ -9,6 +9,7 @@ node_modules
 /webapp/
 /src/yo/.sass-cache/
 /src/yo/node_modules/
+/node_modules/
 
 # kdiff3 ignore
 *.orig
